@@ -12,7 +12,9 @@ class WebWidgets extends abstractModule
     /** @var array */
     protected $handlers = [
         'default' => [],
-        'mgr' => [],
+        'mgr' => [
+            'Base',
+        ],
         'web' => [],
     ];
 }

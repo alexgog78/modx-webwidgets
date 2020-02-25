@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<model package="webwidgets" baseClass="xPDOObject" platform="mysql" defaultEngine="MyISAM" tablePrefix="webwidgets_" version="1.0">
+    <object class="webwidgetsWidget" table="webwidgets" extends="abstractSimpleObject">
+        <field key="name" dbtype="varchar" precision="255" phptype="string" null="true"/>
+        <field key="description" dbtype="text" phptype="string" null="true"/>
+        <field key="is_active" dbtype="tinyint" precision="1" attributes="unsigned" phptype="boolean" null="false" default="0"/>
+        <field key="code_header" dbtype="text" phptype="string" null="true"/>
+        <field key="code_footer" dbtype="text" phptype="string" null="true"/>
+        <!--Indexes-->
+        <index alias="is_active" name="is_active" primary="false" unique="false" type="BTREE">
+            <column key="is_active" length="" collation="A" null="false"/>
+        </index>
+        <!--Validation-->
+        <validation>
+            <rule field="name" name="preventBlank" type="xPDOValidationRule" rule="xPDOMinLengthValidationRule" value="1" message="field_required"/>
+            <rule field="name" name="unique" type="xPDOValidationRule" rule="validation.WebWidgetsValidatorUnique" excludeFields="" message="webwidgets.err_ae"/>
+        </validation>
+    </object>
+</model>
