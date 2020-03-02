@@ -1,13 +1,13 @@
 <?php
 
-if (!$this->loadClass('abstractObjectGetListProcessor', MODX_CORE_PATH . 'components/abstractmodule/processors/mgr/object/', true, true)) {
+if (!$this->loadClass('AbstractObjectGetListProcessor', MODX_CORE_PATH . 'components/abstractmodule/processors/mgr/object/', true, true)) {
     return false;
 }
 
-class webwidgetsWidgetGetListProcessor extends abstractObjectGetListProcessor
+class WebWidgetsChunkGetListProcessor extends AbstractObjectGetListProcessor
 {
     /** @var string */
-    public $classKey = 'webwidgetsWidget';
+    public $classKey = 'WebWidgetsChunk';
 
     /** @var string */
     public $objectType = 'webwidgets';
@@ -29,4 +29,4 @@ class webwidgetsWidgetGetListProcessor extends abstractObjectGetListProcessor
     }
 }
 
-return 'webwidgetsWidgetGetListProcessor';
+return 'WebWidgetsChunkGetListProcessor';

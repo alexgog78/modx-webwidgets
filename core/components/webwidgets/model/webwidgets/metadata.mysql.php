@@ -1,7 +1,7 @@
 <?php
 
 $xpdo_meta_map = [
-    'abstractSimpleObject' => [
-        0 => 'webwidgetsWidget',
+    'AbstractSimpleObject' => [
+        0 => 'webwidgetsChunk',
     ],
 ];

@@ -1,10 +1,10 @@
 <?php
 
-if (!class_exists('abstractModule')) {
+if (!class_exists('AbstractModule')) {
     require_once MODX_CORE_PATH . 'components/abstractmodule/model/abstractmodule/abstractmodule.class.php';
 }
 
-class WebWidgets extends abstractModule
+class WebWidgets extends AbstractModule
 {
     /** @var string */
     protected $tablePrefix = 'webwidgets_';
@@ -15,6 +15,8 @@ class WebWidgets extends abstractModule
         'mgr' => [
             'Base',
         ],
-        'web' => [],
+        'web' => [
+            'Base',
+        ],
     ];
 }

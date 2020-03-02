@@ -1,6 +1,6 @@
 <?php
 
-class WebWidgetsMgrBaseHandler extends abstractMgrHandler
+class WebWidgetsMgrBaseHandler extends AbstractMgrHandler
 {
     /**
      * @param modManagerController $controller

@@ -13,6 +13,8 @@ if (!($webWidgets instanceof WebWidgets)) {
 
 $modxEvent = $modx->event->name;
 switch ($modxEvent) {
-
+    case 'OnLoadWebDocument':
+        $webWidgets->webBase->loadAssets();
+        break;
 }
 return;

@@ -1,10 +1,10 @@
 <?php
 
-if (!class_exists('webwidgetsWidgetUpdateProcessor')) {
+if (!class_exists('WebWidgetsChunkUpdateProcessor')) {
     require_once(dirname(__FILE__) . '/update.class.php');
 }
 
-class webwidgetsWidgetUpdateFromGridProcessor extends webwidgetsWidgetUpdateProcessor
+class WebWidgetsChunkUpdateFromGridProcessor extends WebWidgetsChunkUpdateProcessor
 {
     /**
      * @return bool|string|null
@@ -28,4 +28,4 @@ class webwidgetsWidgetUpdateFromGridProcessor extends webwidgetsWidgetUpdateProc
     }
 }
 
-return 'webwidgetsWidgetUpdateFromGridProcessor';
+return 'WebWidgetsChunkUpdateFromGridProcessor';

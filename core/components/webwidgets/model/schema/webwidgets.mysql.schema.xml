@@ -1,12 +1,20 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <model package="webwidgets" baseClass="xPDOObject" platform="mysql" defaultEngine="MyISAM" tablePrefix="webwidgets_" version="1.0">
-    <object class="webwidgetsWidget" table="webwidgets" extends="abstractSimpleObject">
+    <object class="WebWidgetsChunk" table="chunks" extends="AbstractSimpleObject">
         <field key="name" dbtype="varchar" precision="255" phptype="string" null="true"/>
         <field key="description" dbtype="text" phptype="string" null="true"/>
-        <field key="is_active" dbtype="tinyint" precision="1" attributes="unsigned" phptype="boolean" null="false" default="0"/>
         <field key="code_header" dbtype="text" phptype="string" null="true"/>
         <field key="code_footer" dbtype="text" phptype="string" null="true"/>
+<!--        <field key="template_ids" dbtype="text" phptype="json" null="true"/>-->
+        <field key="menuindex" dbtype="int" precision="10" attributes="unsigned" phptype="integer" default="0"/>
+        <field key="is_active" dbtype="tinyint" precision="1" attributes="unsigned" phptype="boolean" null="false" default="0"/>
         <!--Indexes-->
+<!--        <index alias="template_id" name="template_id" primary="false" unique="false" type="BTREE">-->
+<!--            <column key="template_id" length="" collation="A" null="false"/>-->
+<!--        </index>-->
+        <index alias="menuindex" name="menuindex" primary="false" unique="false" type="BTREE">
+            <column key="menuindex" length="" collation="A" null="false"/>
+        </index>
         <index alias="is_active" name="is_active" primary="false" unique="false" type="BTREE">
             <column key="is_active" length="" collation="A" null="false"/>
         </index>
