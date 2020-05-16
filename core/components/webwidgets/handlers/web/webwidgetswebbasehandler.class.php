@@ -5,8 +5,11 @@ class WebWidgetsWebBaseHandler extends AbstractWebHandler
     /** @var WebWidgetsChunk */
     private $chunkFactory;
 
-    /** @var pdoFetch */
-    private $pdoTools;
+    /** @var modParser */
+    private $parser;
+
+    /** @var int */
+    private $maxIterations = 10;
 
     /**
      * WebWidgetsWebBaseHandler constructor.
@@ -17,7 +20,8 @@ class WebWidgetsWebBaseHandler extends AbstractWebHandler
     {
         parent::__construct($module, $config);
         $this->chunkFactory = $this->modx->newObject('WebWidgetsChunk');
-        $this->pdoTools = $this->modx->getService('pdoFetch');
+        $this->parser = $this->modx->getService('modParser');
+        $this->maxIterations = (int)$this->modx->getOption('parser_max_iterations', null, 10);
     }
 
     public function loadAssets()
@@ -40,9 +44,8 @@ class WebWidgetsWebBaseHandler extends AbstractWebHandler
 
     private function parseContent($content)
     {
-        $maxIterations = (integer)$this->modx->getOption('parser_max_iterations', null, 10);
-        $this->modx->getParser()->processElementTags('', $content, false, false, '[[', ']]', [], $maxIterations);
-        //$this->modx->getParser()->processElementTags('', $content, true, false, '[[', ']]', array(), $maxIterations);
+        $this->parser->processElementTags('', $content, false, false, '[[', ']]', [], $this->maxIterations);
+        $this->parser->processElementTags('', $content, true, true, '[[', ']]', [], $this->maxIterations);
         return $content;
     }
 

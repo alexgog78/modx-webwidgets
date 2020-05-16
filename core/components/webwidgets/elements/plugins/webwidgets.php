@@ -13,7 +13,7 @@ if (!($webWidgets instanceof WebWidgets)) {
 
 $modxEvent = $modx->event->name;
 switch ($modxEvent) {
-    case 'OnLoadWebDocument':
+    case 'OnBeforeRegisterClientScripts':
         $webWidgets->webBase->loadAssets();
         break;
 }
