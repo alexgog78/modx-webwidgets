@@ -1,8 +1,6 @@
 <?php
 
-if (!class_exists('ms2ExtendManagerController')) {
-    require_once dirname(__FILE__) . '/manager.class.php';
-}
+require_once dirname(__FILE__) . '/manager.class.php';
 
 class WebWidgetsMgrChunksManagerController extends WebWidgetsManagerController
 {
@@ -14,8 +12,8 @@ class WebWidgetsMgrChunksManagerController extends WebWidgetsManagerController
 
     public function loadCustomCssJs()
     {
-        $this->module->mgrBase->loadAssets($this);
-        $this->addJavascript($this->module->config['jsUrl'] . 'mgr/widgets/chunk/grid.js');
-        $this->addLastJavascript($this->module->config['jsUrl'] . 'mgr/sections/chunks/list.js');
+        parent::loadCustomCssJs();
+        $this->addJavascript($this->config['jsUrl'] . 'mgr/widgets/chunk/grid.js');
+        $this->addLastJavascript($this->config['jsUrl'] . 'mgr/sections/chunks/list.js');
     }
 }

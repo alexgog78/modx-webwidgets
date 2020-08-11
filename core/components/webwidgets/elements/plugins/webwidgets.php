@@ -13,6 +13,7 @@ if (!($webWidgets instanceof WebWidgets)) {
 
 $modxEvent = $modx->event->name;
 switch ($modxEvent) {
+    //TODO setup event error
     case 'OnBeforeRegisterClientScripts':
         $webWidgets->webBase->loadAssets();
         break;

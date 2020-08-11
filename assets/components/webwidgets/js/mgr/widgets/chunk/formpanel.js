@@ -32,8 +32,8 @@ Ext.extend(WebWidgets.formPanel.chunk, WebWidgets.formPanel.abstract, {
         'description': {xtype: 'textarea', fieldLabel: _('webwidgets.field.description'), height: 239}
     },
     formInputsBottom: {
-        'code_header': {xtype: 'textarea', fieldLabel: _('webwidgets.field.code_header'), height: 400, id: 'code_header'},
-        'code_footer': {xtype: 'textarea', fieldLabel: _('webwidgets.field.code_footer'), height: 400, id: 'code_footer'}
+        'code_header': {xtype: Ext.ComponentMgr.isRegistered('modx-texteditor') ? 'modx-texteditor' : 'textarea', fieldLabel: _('webwidgets.field.code_header'), height: 400, mimeType: 'text/html'},
+        'code_footer': {xtype: Ext.ComponentMgr.isRegistered('modx-texteditor') ? 'modx-texteditor' : 'textarea', fieldLabel: _('webwidgets.field.code_footer'), height: 400, mimeType: 'text/html'}
     },
     defaultValues: {
         is_active: 1

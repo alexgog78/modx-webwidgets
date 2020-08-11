@@ -1,6 +1,7 @@
 <?php
 
 if (!class_exists('AbstractModule')) {
+    /** @noinspection PhpIncludeInspection */
     require_once MODX_CORE_PATH . 'components/abstractmodule/model/abstractmodule/abstractmodule.class.php';
 }
 
@@ -10,7 +11,7 @@ class WebWidgets extends AbstractModule
     protected $tablePrefix = 'webwidgets_';
 
     /** @var array */
-    protected $handlers = [
+    /*protected $handlers = [
         'default' => [],
         'mgr' => [
             'Base',
@@ -18,5 +19,5 @@ class WebWidgets extends AbstractModule
         'web' => [
             'Base',
         ],
-    ];
+    ];*/
 }
