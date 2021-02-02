@@ -1,22 +1,29 @@
 <?php
 
-require_once dirname(dirname(__FILE__)) . '/manager.class.php';
+/** @noinspection PhpIncludeInspection */
+require_once MODX_CORE_PATH . 'components/abstractmodule/controllers/mgr/create.class.php';
 
-class WebWidgetsMgrChunkCreateManagerController extends WebWidgetsManagerController
+class webWidgetsMgrChunkCreateManagerController extends abstractModuleMgrCreateController
 {
-    /** @return string */
-    public function getPageTitle()
-    {
-        return $this->getLexicon('title.creating', [
-            'record' => $this->getLexicon('section.chunk')
-        ]);
-    }
+    /** @var string */
+    protected $pageTitle = 'webwidgets_chunk_creating';
+
+    /** @var array */
+    protected $languageTopics = [
+        'webwidgets:chunk',
+    ];
 
     public function loadCustomCssJs()
     {
         parent::loadCustomCssJs();
-        $this->addJavascript($this->module->config['jsUrl'] . 'mgr/widgets/chunk/formpanel.js');
-        $this->addLastJavascript($this->module->config['jsUrl'] . 'mgr/sections/chunks/create.js');
-        //$this->loadCodeEditor(['code_header', 'code_footer']);
+        $this->addJavascript($this->service->jsUrl . 'mgr/widgets/chunk/formpanel.chunk.js');
+        $this->addJavascript($this->service->jsUrl . 'mgr/widgets/chunk/property/grid.chunk.property.js');
+        $this->addJavascript($this->service->jsUrl . 'mgr/widgets/chunk/property/window.chunk.property.js');
+
+        $this->addLastJavascript($this->service->jsUrl . 'mgr/sections/chunk/create.js');
+        $configJs = $this->modx->toJSON([
+            'xtype' => 'webwidgets-page-chunk-create',
+        ]);
+        $this->addHtml('<script type="text/javascript">Ext.onReady(function () {MODx.load(' . $configJs . ');});</script>');
     }
 }

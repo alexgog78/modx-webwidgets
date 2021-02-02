@@ -1,21 +1,15 @@
 <?php
 
-/** @noinspection PhpUndefinedVariableInspection */
-/** @var modX $modx */
+/**
+ * @var modX $modx
+ * @var array $scriptProperties
+ */
 
-/** @var WebWidgets $webWidgets */
-$webWidgets = $modx->getService('webwidgets', 'WebWidgets', $modx->getOption('core_path') . 'components/webwidgets/model/webwidgets/', [
-    'ctx' => $modx->context->key,
-]);
-if (!($webWidgets instanceof WebWidgets)) {
-    exit('Could not load WebWidgets');
+/** @var webWidgets $webWidgets */
+$webWidgets = $modx->getService('webwidgets', 'webWidgets', MODX_CORE_PATH . 'components/webwidgets/model/');
+if (!($webWidgets instanceof webWidgets)) {
+    exit('Could not load webWidgets');
 }
-
 $modxEvent = $modx->event->name;
-switch ($modxEvent) {
-    //TODO setup event error
-    case 'OnBeforeRegisterClientScripts':
-        $webWidgets->webBase->loadAssets();
-        break;
-}
+$webWidgets->handleEvent($modxEvent, $scriptProperties);
 return;

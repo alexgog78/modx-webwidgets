@@ -1,5 +1,5 @@
 --------------------
-WebWidgets
+webWidgets
 --------------------
 Author: GrimWeb <a.goguev@alexgog.ru>
 --------------------

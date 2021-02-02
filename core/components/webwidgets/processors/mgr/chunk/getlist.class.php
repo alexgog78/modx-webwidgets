@@ -1,32 +1,15 @@
 <?php
 
-if (!$this->loadClass('AbstractObjectGetListProcessor', MODX_CORE_PATH . 'components/abstractmodule/processors/mgr/object/', true, true)) {
-    return false;
-}
+/** @noinspection PhpIncludeInspection */
+require_once MODX_CORE_PATH . 'components/abstractmodule/processors/mgr/getlist.class.php';
 
-class WebWidgetsChunkGetListProcessor extends AbstractObjectGetListProcessor
+class webwidgetsChunkGetListProcessor extends abstractModuleGetListProcessor
 {
-    /** @var string */
-    public $classKey = 'WebWidgetsChunk';
-
     /** @var string */
     public $objectType = 'webwidgets';
 
     /** @var string */
-    public $defaultSortField = 'id';
-
-    /**
-     * @param xPDOQuery $c
-     * @param string $query
-     * @return xPDOQuery
-     */
-    public function searchQuery(xPDOQuery $c, $query)
-    {
-        $c->where([
-            'name:LIKE' => '%' . $query . '%',
-        ]);
-        return $c;
-    }
+    public $classKey = 'webwidgetsChunk';
 }
 
-return 'WebWidgetsChunkGetListProcessor';
+return 'webwidgetsChunkGetListProcessor';

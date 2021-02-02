@@ -1,19 +1,22 @@
 <?php
 
-require_once dirname(__FILE__) . '/config.inc.php';
-require_once dirname(dirname(__FILE__)) . '/config.core.php';
-require_once MODX_CORE_PATH . 'components/abstractmodule/cli/abstractbuildmodel.class.php';
+/**
+ * @var modX $modx
+ */
+require_once dirname(__DIR__) . '/modx.php';
+require_once __DIR__ . '/build.config.php';
 
-class BuildModel extends AbstractBuildModel
-{
-    /** @var string */
-    protected $schemaPath = MODX_CORE_PATH . 'components/' . PKG_NAME_LOWER . '/model/schema/' . PKG_NAME_LOWER . '.mysql.schema.xml';
+/**
+ * @var xPDOManager $manager
+ * @var xPDOGenerator $generator
+ */
+$manager = $modx->getManager();
+$generator = $modx->manager->getGenerator();
 
-    /** @var string */
-    protected $modelPath = MODX_CORE_PATH . 'components/' . PKG_NAME_LOWER . '/model/';
-}
+/** Generate model files */
+require_once PKG_BUILD_PATH . 'model/schema.inc.php';
 
-array_shift($argv);
-$build = new BuildModel($argv);
-$build->run();
+/** Create DB tables */
+require_once PKG_BUILD_PATH . 'model/db.inc.php';
+
 exit();

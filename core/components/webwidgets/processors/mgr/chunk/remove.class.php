@@ -1,16 +1,15 @@
 <?php
 
-if (!$this->loadClass('AbstractObjectRemoveProcessor', MODX_CORE_PATH . 'components/abstractmodule/processors/mgr/object/', true, true)) {
-    return false;
-}
+/** @noinspection PhpIncludeInspection */
+require_once MODX_CORE_PATH . 'components/abstractmodule/processors/mgr/remove.class.php';
 
-class WebWidgetsChunkRemoveProcessor extends AbstractObjectRemoveProcessor
+class webwidgetsChunkRemoveProcessor extends abstractModuleRemoveProcessor
 {
     /** @var string */
-    public $classKey = 'WebWidgetsChunk';
+    public $objectType = 'webwidgets';
 
     /** @var string */
-    public $objectType = 'webwidgets';
+    public $classKey = 'webwidgetsChunk';
 }
 
-return 'WebWidgetsChunkRemoveProcessor';
+return 'webwidgetsChunkRemoveProcessor';

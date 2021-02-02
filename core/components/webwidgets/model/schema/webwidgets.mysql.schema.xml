@@ -1,19 +1,17 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<model package="webwidgets" baseClass="xPDOObject" platform="mysql" defaultEngine="MyISAM" tablePrefix="webwidgets_" version="1.0">
-    <object class="WebWidgetsChunk" table="chunks" extends="AbstractSimpleObject">
+<model package="webwidgets" baseClass="abstractObject" platform="mysql" defaultEngine="InnoDB" tablePrefix="webwidgets_" phpdoc-package="webwidgets" phpdoc-subpackage="" version="1.1">
+    <object class="webwidgetsChunk" table="chunks" extends="abstractSimpleObject">
         <field key="name" dbtype="varchar" precision="255" phptype="string" null="true"/>
+        <field key="parser_class" dbtype="varchar" precision="100" phptype="string" null="false" default="modParser"/>
         <field key="description" dbtype="text" phptype="string" null="true"/>
         <field key="code_header" dbtype="text" phptype="string" null="true"/>
         <field key="code_footer" dbtype="text" phptype="string" null="true"/>
-<!--        <field key="template_ids" dbtype="text" phptype="json" null="true"/>-->
-        <field key="menuindex" dbtype="int" precision="10" attributes="unsigned" phptype="integer" default="0"/>
+        <field key="sort_order" dbtype="int" precision="10" attributes="unsigned" phptype="integer" default="0"/>
         <field key="is_active" dbtype="tinyint" precision="1" attributes="unsigned" phptype="boolean" null="false" default="0"/>
+        <field key="properties" dbtype="text" phptype="json" null="true"/>
         <!--Indexes-->
-<!--        <index alias="template_id" name="template_id" primary="false" unique="false" type="BTREE">-->
-<!--            <column key="template_id" length="" collation="A" null="false"/>-->
-<!--        </index>-->
-        <index alias="menuindex" name="menuindex" primary="false" unique="false" type="BTREE">
-            <column key="menuindex" length="" collation="A" null="false"/>
+        <index alias="sort_order" name="sort_order" primary="false" unique="false" type="BTREE">
+            <column key="sort_order" length="" collation="A" null="false"/>
         </index>
         <index alias="is_active" name="is_active" primary="false" unique="false" type="BTREE">
             <column key="is_active" length="" collation="A" null="false"/>
@@ -21,7 +19,7 @@
         <!--Validation-->
         <validation>
             <rule field="name" name="preventBlank" type="xPDOValidationRule" rule="xPDOMinLengthValidationRule" value="1" message="field_required"/>
-            <rule field="name" name="unique" type="xPDOValidationRule" rule="validation.WebWidgetsValidatorUnique" excludeFields="" message="webwidgets.err_ae"/>
+            <rule field="parser_class" name="preventBlank" type="xPDOValidationRule" rule="xPDOMinLengthValidationRule" value="1" message="field_required"/>
         </validation>
     </object>
 </model>

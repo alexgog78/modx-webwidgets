@@ -1,9 +1,9 @@
 'use strict';
 
-var WebWidgets = function (config) {
+var webWidgets = function (config) {
     config = config || {};
-    WebWidgets.superclass.constructor.call(this, config);
+    webWidgets.superclass.constructor.call(this, config);
 };
-Ext.extend(WebWidgets, Ext.Component, abstractModule);
-Ext.reg('webwidgets', WebWidgets);
-var WebWidgets = new WebWidgets();
+Ext.extend(webWidgets, Ext.Component, abstractModule);
+Ext.reg('webwidgets', webWidgets);
+webWidgets = new webWidgets();

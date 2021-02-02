@@ -1,43 +1,33 @@
 <?php
 
-require_once dirname(dirname(__FILE__)) . '/manager.class.php';
+/** @noinspection PhpIncludeInspection */
+require_once MODX_CORE_PATH . 'components/abstractmodule/controllers/mgr/update.class.php';
 
-class WebWidgetsMgrChunkUpdateManagerController extends WebWidgetsManagerController
+class webWidgetsMgrChunkUpdateManagerController extends abstractModuleMgrUpdateController
 {
     /** @var string */
-    protected $recordClassKey = 'WebWidgetsChunk';
+    protected $objectGetProcessorPath = 'mgr/chunk/get';
 
-    /** @return string */
-    public function getPageTitle()
-    {
-        return $this->getLexicon('title.editing', [
-            'record' => $this->getLexicon('section.chunk')
-        ]);
-    }
+    /** @var string */
+    protected $pageTitle = 'webwidgets_chunk_editing';
+
+    /** @var array */
+    protected $languageTopics = [
+        'webwidgets:chunk',
+    ];
 
     public function loadCustomCssJs()
     {
         parent::loadCustomCssJs();
-        $this->addJavascript($this->config['jsUrl'] . 'mgr/widgets/chunk/formpanel.js');
-        $this->addLastJavascript($this->config['jsUrl'] . 'mgr/sections/chunks/update.js');
+        $this->addJavascript($this->service->jsUrl . 'mgr/widgets/chunk/formpanel.chunk.js');
+        $this->addJavascript($this->service->jsUrl . 'mgr/widgets/chunk/property/grid.chunk.property.js');
+        $this->addJavascript($this->service->jsUrl . 'mgr/widgets/chunk/property/window.chunk.property.js');
 
-        //$this->loadCodeEditor(['code_header', 'code_footer']);
-
-        //TODO remove
+        $this->addLastJavascript($this->service->jsUrl . 'mgr/sections/chunk/update.js');
         $configJs = $this->modx->toJSON([
             'xtype' => 'webwidgets-page-chunk-update',
-            'recordId' => $this->record->id,
-            'record' => $this->record->toArray(),
+            'record' => $this->object,
         ]);
-        $this->addHtml(
-            '<script type="text/javascript">Ext.onReady(function () {MODx.load(' . $configJs . ');});</script>'
-        );
-
-        /*parent::loadCustomCssJs();
-        $this->addJavascript($this->module->config['jsUrl'] . 'mgr/widgets/template/formpanel.js');
-        $this->addJavascript($this->module->config['jsUrl'] . 'mgr/widgets/template/users/grid.js');
-        $this->addLastJavascript($this->module->config['jsUrl'] . 'mgr/sections/template/update.js');
-        $this->loadCodeEditor();
-        */
+        $this->addHtml('<script type="text/javascript">Ext.onReady(function () {MODx.load(' . $configJs . ');});</script>');
     }
 }

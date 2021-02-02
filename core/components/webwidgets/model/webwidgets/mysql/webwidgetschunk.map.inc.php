@@ -1,20 +1,22 @@
 <?php
 
-$xpdo_meta_map['WebWidgetsChunk'] = [
+$xpdo_meta_map['webwidgetsChunk'] = [
     'package' => 'webwidgets',
-    'version' => '1.0',
+    'version' => '1.1',
     'table' => 'chunks',
-    'extends' => 'AbstractSimpleObject',
+    'extends' => 'abstractSimpleObject',
     'tableMeta' => [
-        'engine' => 'MyISAM',
+        'engine' => 'InnoDB',
     ],
     'fields' => [
         'name' => NULL,
+        'parser_class' => 'modParser',
         'description' => NULL,
         'code_header' => NULL,
         'code_footer' => NULL,
-        'menuindex' => 0,
+        'sort_order' => 0,
         'is_active' => 0,
+        'properties' => NULL,
     ],
     'fieldMeta' => [
         'name' => [
@@ -22,6 +24,13 @@ $xpdo_meta_map['WebWidgetsChunk'] = [
             'precision' => '255',
             'phptype' => 'string',
             'null' => true,
+        ],
+        'parser_class' => [
+            'dbtype' => 'varchar',
+            'precision' => '100',
+            'phptype' => 'string',
+            'null' => false,
+            'default' => 'modParser',
         ],
         'description' => [
             'dbtype' => 'text',
@@ -38,7 +47,7 @@ $xpdo_meta_map['WebWidgetsChunk'] = [
             'phptype' => 'string',
             'null' => true,
         ],
-        'menuindex' => [
+        'sort_order' => [
             'dbtype' => 'int',
             'precision' => '10',
             'attributes' => 'unsigned',
@@ -53,15 +62,20 @@ $xpdo_meta_map['WebWidgetsChunk'] = [
             'null' => false,
             'default' => 0,
         ],
+        'properties' => [
+            'dbtype' => 'text',
+            'phptype' => 'json',
+            'null' => true,
+        ],
     ],
     'indexes' => [
-        'menuindex' => [
-            'alias' => 'menuindex',
+        'sort_order' => [
+            'alias' => 'sort_order',
             'primary' => false,
             'unique' => false,
             'type' => 'BTREE',
             'columns' => [
-                'menuindex' => [
+                'sort_order' => [
                     'length' => '',
                     'collation' => 'A',
                     'null' => false,
@@ -91,11 +105,13 @@ $xpdo_meta_map['WebWidgetsChunk'] = [
                     'value' => '1',
                     'message' => 'field_required',
                 ],
-                'unique' => [
+            ],
+            'parser_class' => [
+                'preventBlank' => [
                     'type' => 'xPDOValidationRule',
-                    'rule' => 'validation.WebWidgetsValidatorUnique',
-                    'excludeFields' => '',
-                    'message' => 'webwidgets.err_ae',
+                    'rule' => 'xPDOMinLengthValidationRule',
+                    'value' => '1',
+                    'message' => 'field_required',
                 ],
             ],
         ],

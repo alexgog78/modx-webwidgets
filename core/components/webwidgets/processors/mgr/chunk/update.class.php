@@ -1,16 +1,15 @@
 <?php
 
-if (!$this->loadClass('AbstractObjectUpdateProcessor', MODX_CORE_PATH . 'components/abstractmodule/processors/mgr/object/', true, true)) {
-    return false;
-}
+/** @noinspection PhpIncludeInspection */
+require_once MODX_CORE_PATH . 'components/abstractmodule/processors/mgr/update.class.php';
 
-class WebWidgetsChunkUpdateProcessor extends AbstractObjectUpdateProcessor
+class webwidgetsChunkUpdateProcessor extends abstractModuleUpdateProcessor
 {
     /** @var string */
-    public $classKey = 'WebWidgetsChunk';
+    public $objectType = 'webwidgets';
 
     /** @var string */
-    public $objectType = 'webwidgets';
+    public $classKey = 'webwidgetsChunk';
 }
 
-return 'WebWidgetsChunkUpdateProcessor';
+return 'webwidgetsChunkUpdateProcessor';

@@ -1,31 +1,12 @@
 <?php
 
-if (!class_exists('WebWidgetsChunkUpdateProcessor')) {
-    require_once(dirname(__FILE__) . '/update.class.php');
-}
+require_once __DIR__ . '/update.class.php';
+/** @noinspection PhpIncludeInspection */
+require_once MODX_CORE_PATH . 'components/abstractmodule/processors/helpers/gridupdate.trait.php';
 
-class WebWidgetsChunkUpdateFromGridProcessor extends WebWidgetsChunkUpdateProcessor
+class webwidgetsChunkUpdateFromGridProcessor extends webwidgetsChunkUpdateProcessor
 {
-    /**
-     * @return bool|string|null
-     */
-    public function initialize()
-    {
-        $data = $this->getProperty('data');
-        if (empty($data)) {
-            return $this->modx->lexicon('invalid_data');
-        }
-
-        $data = $this->modx->fromJSON($data);
-        if (empty($data)) {
-            return $this->modx->lexicon('invalid_data');
-        }
-
-        $this->setProperties($data);
-        $this->unsetProperty('data');
-
-        return parent::initialize();
-    }
+    use abstractModuleProcessorHelperGridUpdate;
 }
 
-return 'WebWidgetsChunkUpdateFromGridProcessor';
+return 'webwidgetsChunkUpdateFromGridProcessor';
